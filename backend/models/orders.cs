@@ -12,6 +12,7 @@ namespace RestaurantOrderingSystem.Models
         public DateTime? CompletedTime { get; set; }
         public bool Takeout { get; set; }
 
+        //Linking the MenuItem and Customer tables for foreign key relationships.
         public MenuItem MenuItem { get; }
         public Customer Customer { get; set; }
     }
