@@ -6,6 +6,7 @@ namespace RestaurantOrderingSystem.DTOs
 {
     public class OrganizationOrderDTO
     {
+        public int? Id { get; set; }
         public bool OrderStatus { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime? CompletedTime { get; set; }

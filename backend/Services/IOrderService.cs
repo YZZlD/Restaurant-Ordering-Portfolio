@@ -6,10 +6,10 @@ namespace RestaurantOrderingSystem.Services
 {
     public interface IOrderService
     {
-        Task<IEnumerable<ConsumerOrderDTO>> GetAllOrdersAsync();
-        Task<ConsumerOrderDTO> GetOrderByIdAsync(int id);
-        Task AddOrderAsync(ConsumerOrderDTO consumerOrderDTO);
-        Task UpdateOrderAsync(int id, ConsumerOrderDTO consumerOrderDTO);
+        Task<IEnumerable<OrganizationOrderDTO>> GetAllOrdersAsync();
+        Task<OrganizationOrderDTO> GetOrderByIdAsync(int id);
+        Task AddOrderAsync(OrganizationOrderDTO organizationOrderDTO);
+        Task UpdateOrderAsync(int id, OrganizationOrderDTO organizationOrderDTO);
         Task DeleteOrderAsync(int id);
     }
 }

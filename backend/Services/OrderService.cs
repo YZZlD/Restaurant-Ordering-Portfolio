@@ -15,11 +15,11 @@ namespace RestaurantOrderingSystem.Services
             _orderRepository = orderRepository;
         }
 
-        public async Task<IEnumerable<ConsumerOrderDTO>> GetAllOrdersAsync()
+        public async Task<IEnumerable<OrganizationOrderDTO>> GetAllOrdersAsync()
         {
             var Orders = await _orderRepository.GetAllOrdersAsync();
 
-            return Orders.Select(c => new ConsumerOrderDTO
+            return Orders.Select(c => new OrganizationOrderDTO
             {
                 OrderStatus = c.OrderStatus,
                 CreatedTime = c.CreatedTime,
@@ -28,11 +28,11 @@ namespace RestaurantOrderingSystem.Services
             });
         }
 
-        public async Task<ConsumerOrderDTO> GetOrderByIdAsync(int id)
+        public async Task<OrganizationOrderDTO> GetOrderByIdAsync(int id)
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
 
-            return new ConsumerOrderDTO
+            return new OrganizationOrderDTO
             {
                 OrderStatus = order.OrderStatus,
                 CreatedTime = order.CreatedTime,
@@ -41,29 +41,29 @@ namespace RestaurantOrderingSystem.Services
             };
         }
 
-        public async Task AddOrderAsync(ConsumerOrderDTO orderDTO)
+        public async Task AddOrderAsync(OrganizationOrderDTO organizationOrderDTO)
         {
             var order = new Order
             {
-                OrderStatus = orderDTO.OrderStatus,
-                CreatedTime = orderDTO.CreatedTime,
-                CompletedTime = orderDTO.CompletedTime,
-                MenuItem = orderDTO.MenuItem
+                OrderStatus = organizationOrderDTO.OrderStatus,
+                CreatedTime = organizationOrderDTO.CreatedTime,
+                CompletedTime = organizationOrderDTO.CompletedTime,
+                MenuItem = organizationOrderDTO.MenuItem
             };
 
             await _orderRepository.AddOrderAsync(order);
         }
 
-        public async Task UpdateOrderAsync(int id, ConsumerOrderDTO consumerOrderDTO)
+        public async Task UpdateOrderAsync(int id, OrganizationOrderDTO organizationOrderDTO)
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
 
             if (order == null) throw new KeyNotFoundException("Order id not found.");
 
-            order.OrderStatus = consumerOrderDTO.OrderStatus;
-            order.CreatedTime = consumerOrderDTO.CreatedTime;
-            order.CompletedTime = consumerOrderDTO.CompletedTime;
-            order.MenuItem = consumerOrderDTO.MenuItem;
+            order.OrderStatus = organizationOrderDTO.OrderStatus;
+            order.CreatedTime = organizationOrderDTO.CreatedTime;
+            order.CompletedTime = organizationOrderDTO.CompletedTime;
+            order.MenuItem = organizationOrderDTO.MenuItem;
 
             await _orderRepository.UpdateOrderAsync(order);
         }
