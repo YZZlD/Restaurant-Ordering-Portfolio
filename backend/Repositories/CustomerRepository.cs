@@ -8,9 +8,9 @@ namespace RestaurantOrderingSystem.Repositories
 {
     public class CustomersRepository : ICustomerRepository
     {
-        private readonly CustomersContext _context;
+        private readonly RestaurantDbContext _context;
 
-        public CustomersRepository(CustomersContext context)
+        public CustomersRepository(RestaurantDbContext context)
         {
             _context = context;
         }

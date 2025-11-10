@@ -18,14 +18,16 @@ namespace RestaurantOrderingSystem
             //Grabbing connection string from local secret keys
             string connectionString = _configuration["ConnectionStrings:DefaultConnection"];
 
-            services.AddDbContext<OrdersContext>(options =>
-                options.UseNpgsql(connectionString));
+            services.AddDbContext<RestaurantDbContext>(options => options.UseNpgsql(connectionString));
 
-            services.AddDbContext<MenuItemsContext>(options =>
-                options.UseNpgsql(connectionString));
+            // services.AddDbContext<OrdersContext>(options =>
+            //     options.UseNpgsql(connectionString));
 
-            services.AddDbContext<CustomersContext>(options =>
-                options.UseNpgsql(connectionString));
+            // services.AddDbContext<MenuItemsContext>(options =>
+            //     options.UseNpgsql(connectionString));
+
+            // services.AddDbContext<CustomersContext>(options =>
+            //     options.UseNpgsql(connectionString));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

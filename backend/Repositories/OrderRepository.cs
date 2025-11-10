@@ -7,9 +7,9 @@ namespace RestaurantOrderingSystem.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly OrdersContext _context;
+        private readonly RestaurantDbContext _context;
 
-        public OrderRepository(OrdersContext context)
+        public OrderRepository(RestaurantDbContext context)
         {
             _context = context;
         }
