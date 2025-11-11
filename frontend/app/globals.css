@@ -34,6 +34,10 @@
   .orderLink {
     @apply text-3xl text-black
   }
+
+  .currentPage {
+    @apply underline text-black
+  }
 }
 
 body {
