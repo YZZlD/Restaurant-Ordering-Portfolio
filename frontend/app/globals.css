@@ -24,7 +24,15 @@
 
 @layer components {
   .navlink{
-    @apply text-xl hover:text-gray-400
+    @apply text-2xl hover:text-gray-400
+  }
+
+  .restaurantTitle {
+    @apply text-5xl
+  }
+
+  .orderLink {
+    @apply text-3xl text-black
   }
 }
 
