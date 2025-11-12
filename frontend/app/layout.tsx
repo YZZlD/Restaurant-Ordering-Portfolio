@@ -30,10 +30,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}>
         <Navbar />
         {children}
+        <Footer/>
 
-        <footer>
-          <Footer/>
-        </footer>
       </body>
     </html>
   );

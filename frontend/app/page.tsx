@@ -4,8 +4,7 @@ import LandingContent from "@/components/landing-content";
 
 export default function Home() {
   return (
-    <div>
-      <p>THIS IS HOME</p>
+    <div className="h-3/4 w-full">
       <LandingContent />
       <LandingBackground />
     </div>

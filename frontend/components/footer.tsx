@@ -1,9 +1,9 @@
 export default function Footer()
 {
     return (
-        <div className="relative h-1/3 z-5">
+        <div className="relative h-1/3 w-full">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-            <div className="flex justify-center space-x-10 border border-white p-10 bg-[#ac0000]">
+            <div className="flex justify-center space-x-10 p-10 bg-[#ac0000]">
                 <div className="grid-row-4 space-y-5">
                     <h1>Address</h1>
                     <p>Dine In, Take-out, and Delivery</p>
@@ -23,7 +23,7 @@ export default function Footer()
                 </div>
                 <div className="space-y-5">
                     <h1>Contact Us</h1>
-                    <p>(1)111-111-1111</p>
+                    <p>[Phone Number Goes Here]</p>
                     <a href="#" className="fa fa-twitter social-button"></a>
                     <a href="#" className="fa fa-instagram social-button"></a>
                 </div>
