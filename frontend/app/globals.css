@@ -5,7 +5,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -17,7 +17,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
     --foreground: #ededed;
   }
 }
@@ -37,6 +37,29 @@
 
   .currentPage {
     @apply underline text-black
+  }
+
+  .social-button {
+    @apply hover:opacity-50;
+  }
+
+  .fa {
+    padding: 15px;
+    font-size: 25px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+
+  .fa-twitter{
+    background: #55ACEE;
+    color: white;
+  }
+
+  .fa-instagram {
+    background: #ad86e2;
+    color: white;
   }
 }
 

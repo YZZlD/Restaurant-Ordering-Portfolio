@@ -12,7 +12,7 @@ export default function Navbar()
     const pathname = usePathname();
 
     return(
-            <nav className="my-5 mx-5 px-10 h-1/6 bg-red-700 rounded-md">
+            <nav className=" h-1/6 bg-red-700 sticky z-5">
                 <div className="flex h-full">
                     <div className=" w-1/8 flex items-center overflow-hidden relative" >
                         <Image alt="restaurant logo" fill={true} src="../day82-burger.svg" className="" priority={true}/>
