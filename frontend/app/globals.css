@@ -43,6 +43,22 @@
     @apply hover:opacity-50;
   }
 
+  .header {
+    @apply text-5xl
+  }
+
+  .sub-header {
+    @apply text-3xl
+  }
+
+  .main-text {
+    @apply text-lg
+  }
+
+  .dropshadow {
+    @apply drop-shadow-[0_4.2px_4.2px_rgba(0,0,0,0.8)]
+  }
+
   .fa {
     padding: 15px;
     font-size: 25px;
