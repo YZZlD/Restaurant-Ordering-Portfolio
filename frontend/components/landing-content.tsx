@@ -4,8 +4,8 @@ import { lobster } from "@/app/ui/fonts"
 export default function LandingContent()
 {
     return (
-        <div className="relative z-1 flex justify-center m-20">
-            <div className="relative flex flex-wrap justify-center text-center w-1/3 space-y-3">
+        <div className="relative z-1 flex justify-center my-20">
+            <div className="relative flex flex-wrap justify-center text-center w-1/3 space-y-15">
                 <h1 className={`${lobster.className} dropshadow header`}>Welcome to Burger Bites</h1>
                 <h2 className={`${lobster.className} dropshadow sub-header`}>Dine in | Take out | Delivery</h2>
                 <p className={`${lobster.className} dropshadow main-text text-center`}>

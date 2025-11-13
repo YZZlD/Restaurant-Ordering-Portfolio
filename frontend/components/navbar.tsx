@@ -20,7 +20,7 @@ export default function Navbar()
                     <div className=" w-1/5 flex items-center justify-start px-10">
                         <a href="/" className={`${condimentTitle.className}  restaurantTitle`}>Burger Bites</a>
                     </div>
-                    <div className=" w-1/2 flex justify-between px-20 items-center">
+                    <div className=" w-1/2 flex flex-col justify-between px-20 items-center lg:flex-row">
                         <a href="/about" className={`${robotoBold.className} navlink ${pathname == "/about" ? "currentPage" : ""}`}>About</a>
                         <a href="/menu" className={`${robotoBold.className} navlink ${pathname == "/menu" ? "currentPage" : ""}`}>Menu</a>
                         <a href="/contact-us" className={`${robotoBold.className} navlink ${pathname == "/contact-us" ? "currentPage" : ""}`}>Contact Us</a>

@@ -59,6 +59,18 @@
     @apply drop-shadow-[0_4.2px_4.2px_rgba(0,0,0,0.8)]
   }
 
+  .itemName {
+    @apply text-2xl underline
+  }
+
+  .itemPrice {
+    @apply text-lg
+  }
+
+  .itemDescription {
+    @apply text-lg
+  }
+
   .fa {
     padding: 15px;
     font-size: 25px;
