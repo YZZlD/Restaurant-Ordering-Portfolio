@@ -18,21 +18,13 @@ export default function Page()
     // })
 
     const addMenuItemToCart = (id:number) => {
-        for(let i:number = 0; i < cart.length; i++){
-            if(cart[i].itemInformation.id === id) {
-                cart[i].quantity++;
-                return;
-            }
-        }
-        setCart([...cart, {itemInformation: newMenuItems.filter((item:any) => item.id === id)[0], quantity: 1}]);
+        setCart([...cart, newMenuItems.filter((item:any) => item.id === id)[0]]);
         console.log(cart);
     }
     
 
     const removeMenuItemFromCart = (id:number) => {
-        setCart(cart.filter((item:any) => {
-            item.itemInformation.id !== id;
-        }))
+        setCart(cart.filter((item:any) => item.id !== id));
     }
 
     const newMenuItems = [

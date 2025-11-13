@@ -5,34 +5,26 @@ import { useState } from "react"
 
 export default function CartItemCard({cartItem}: {cartItem:any}){
 
-    const [quantity, setQuantity] = useState(cartItem.quantity);
+    const [quantity, setQuantity] = useState(1);
 
     return (
-        //THIS IS THE WHOLE CARD
-                <div className="relative w-100 h-125 border-4 border-black bg-red-700 rounded-xl">
-                    {/* THIS IS THE IMAGE DIV */}
-                    <div className="relative w-full h-1/2 border-4 border-white rounded-md">
-                        <div className="relative w-full h-full">
-                            <img alt={cartItem.itemInformation.name} src={cartItem.itemInformation.src} className="object-cover h-full w-full"/>
-                        </div>
-                    </div>
-                    {/* THIS IS THE DESCRIPTION DIV */}
-                    <div className="flex h-1/2 items-center mx-5">
-                        <div>
-                             <h1 className={`${libreBaskerville.className}  itemName p-2`}>
-                            {cartItem.itemInformation.name}
-                            </h1>
-                            <p className={`${libreBaskerville.className}  itemDescription p-2`}>
-                                {cartItem.itemInformation.description}
-                            </p>
-                            <p className={`${libreBaskerville.className}  itemPrice p-2`}>
-                                <strong>{cartItem.itemInformation.price}</strong>
-                            </p>
-                            <p>
-                                <strong>{quantity}</strong>
-                            </p>
-                        </div>
-                    </div>
+        <div className="relative grid grid-cols-10 w-full h-50 rounded-md border-4 border-black bg-red-200">
+            <div className="relative col-start-1 col-span-3 w-full h-full rounded-md border-4 border-red-900">
+                <div className="relative w-full h-full border-4 border-black">
+                    <img alt={cartItem.name} src={cartItem.src} className="object-cover h-full w-full"/>
                 </div>
+            </div>
+            <div className="relative w-full h-full col-start-4 col-span-4">
+                <h1 className={`${libreBaskerville.className}  itemName p-2 text-black`}>
+                {cartItem.name}
+                </h1>
+                <p className={`${libreBaskerville.className}  itemDescription p-2 text-black`}>
+                    {cartItem.description}
+                </p>
+                <p className={`${libreBaskerville.className}  itemPrice p-2 text-black`}>
+                    <strong>{cartItem.price}</strong>
+                </p>
+            </div>
+        </div>
     )
 }

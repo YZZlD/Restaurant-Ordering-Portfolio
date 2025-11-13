@@ -10,7 +10,7 @@ export default function OrderCart({cart}: {cart:any[]})
                 </div>
                 {cart.map(item => (
                     <div key={item.id} className="">
-                        <CartItemCard cartItem={item} />
+                        <CartItemCard key={item.id} cartItem={item} />
                     </div>
                 ))}
         </div>
