@@ -70,7 +70,7 @@ export default function Page()
                     </div>
                 ))}
             </div>
-            <OrderCart removeLastItem={(id:number) => removeLastItem(id)} total={total} modifyTotal={(value:number) => modifyTotal(value)} cart={cart}/>
+            <OrderCart setItemInCart={(id:number) => setItemInCart(id)} removeLastItem={(id:number) => removeLastItem(id)} total={total} modifyTotal={(value:number) => modifyTotal(value)} cart={cart}/>
         </div>
         
     )

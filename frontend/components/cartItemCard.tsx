@@ -3,7 +3,7 @@
 import { libreBaskerville } from "@/app/ui/fonts"
 import { useState } from "react"
 
-export default function CartItemCard({cartItem, modifyTotal, removeLastItem}: {cartItem:any, modifyTotal:Function, removeLastItem:Function}){
+export default function CartItemCard({cartItem, modifyTotal, removeLastItem, setItemInCart}: {cartItem:any, modifyTotal:Function, removeLastItem:Function, setItemInCart:Function}){
 
     const [quantity, setQuantity] = useState(1);
 
@@ -12,9 +12,10 @@ export default function CartItemCard({cartItem, modifyTotal, removeLastItem}: {c
 
         if(cartItem.quantity <= 1) {
             removeLastItem(cartItem.itemInfo.id);
+            setItemInCart(cartItem.itemInfo.id);
             return;
         }
-        
+
         cartItem.quantity--;
         setQuantity(quantity => quantity -= 1);
     }
