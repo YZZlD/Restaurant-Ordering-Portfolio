@@ -3,27 +3,45 @@
 import { libreBaskerville } from "@/app/ui/fonts"
 import { useState } from "react"
 
-export default function CartItemCard({cartItem}: {cartItem:any}){
+export default function CartItemCard({cartItem, modifyTotal, removeLastItem}: {cartItem:any, modifyTotal:Function, removeLastItem:Function}){
 
     const [quantity, setQuantity] = useState(1);
 
+    const decrementQuantity = () => {
+        modifyTotal(cartItem.itemInfo.price * -1);
+
+        if(cartItem.quantity <= 1) {
+            removeLastItem(cartItem.itemInfo.id);
+            return;
+        }
+        
+        cartItem.quantity--;
+        setQuantity(quantity => quantity -= 1);
+    }
+
+    const incrementQuantity = () => {
+        cartItem.quantity++;
+
+        modifyTotal(cartItem.itemInfo.price);
+        setQuantity(quantity => quantity += 1);
+    }
+
     return (
-        <div className="relative grid grid-cols-10 w-full h-50 rounded-md border-4 border-black bg-red-200">
-            <div className="relative col-start-1 col-span-3 w-full h-full rounded-md border-4 border-red-900">
-                <div className="relative w-full h-full border-4 border-black">
-                    <img alt={cartItem.name} src={cartItem.src} className="object-cover h-full w-full"/>
-                </div>
+        <div className="grid grid-cols-10 border-2 border-black rounded-lg items-center h-20 bg-red-200">
+            <div className="grid col-start-1 col-span-4 grid-cols-1 ms-10">
+                <h1 className="text-xl text-black">{cartItem.itemInfo.name}</h1>
             </div>
-            <div className="relative w-full h-full col-start-4 col-span-4">
-                <h1 className={`${libreBaskerville.className}  itemName p-2 text-black`}>
-                {cartItem.name}
-                </h1>
-                <p className={`${libreBaskerville.className}  itemDescription p-2 text-black`}>
-                    {cartItem.description}
-                </p>
-                <p className={`${libreBaskerville.className}  itemPrice p-2 text-black`}>
-                    <strong>{cartItem.price}</strong>
-                </p>
+            <div className="flex justify-center col-start-5 col-span-2">
+                <p className="text-2xl text-black"><strong>${cartItem.itemInfo.price}</strong></p>
+            </div>
+            <div className="flex justify-center col-start-7 col-span-4">
+                <div className="relative grid grid-cols-10 h-1/3 w-1/2">
+                    <button className="col-start-1 col-span-3 rounded-s-xl border-2 border-black bg-red-700 hover:bg-red-400" onClick={() => decrementQuantity()}>-</button>
+                    <div className="col-start-4 col-span-4 border-2 border-black bg-white">
+                        <p className="text-center text-black">{quantity}</p>
+                    </div>
+                    <button className="col-start-8 col-span-3 rounded-e-xl border-2 border-black bg-red-700 hover:bg-red-400" onClick={() => incrementQuantity()}>+</button>
+                </div>
             </div>
         </div>
     )

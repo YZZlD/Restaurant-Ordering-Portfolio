@@ -21,7 +21,7 @@ export default function MenuItemCard({menuItem} : {menuItem:any})
                         {menuItem.description}
                     </p>
                     <p className={`${libreBaskerville.className}  itemPrice p-2`}>
-                        <strong>{menuItem.price}</strong>
+                        <strong>${menuItem.price}</strong>
                     </p>
                 </div>
             </div>
