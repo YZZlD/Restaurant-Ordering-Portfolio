@@ -2,34 +2,19 @@
 
 import MenuItemCard from "@/components/menuItemCard";
 import { useState } from "react";
-import { menuItems, updateMenuItems } from "../src/APIHandling";
+import getMenuItems from "../src/APIHandling";
 
 export default function Page()
 {
     const [loading, setLoading] = useState(true);
 
-    async function getMenuItems(): Promise<object[]>{
-        try{
-            const res = await fetch('localhost:5223/api/menuItems');
-            if(!res.ok) throw new Error(`${res.status}`);
+    let menuItems: object[] = [];
 
-            const menuItems = await res.json();
-            return menuItems;
-        } catch(err)
-        {
-            console.log(err)
-        } finally{
-            setLoading(false);
-        }
-        return [];
-    }
+    getMenuItems().then((result) => {
+        setLoading(false);
+        menuItems = result;
+    })
 
-    if(menuItems.length == 0)
-    {
-        getMenuItems().then(result => {
-            updateMenuItems(result);
-        })
-    }
     //THIS IS TEST BEFORE I HOOK UP AND FIX THE API
     const newMenuItems = [
         {id: 1, name: 'Standard Burger', src: '/burger-background.jpg', price: '$10.99', description: 'Canadian beef with onions and our signature sauce'},
@@ -41,7 +26,7 @@ export default function Page()
     ]
 
     if (loading) return <p>Loading...</p>
-    if (menuItems.length == 0) return <p className="text-black">ERROR LOADING MENU</p>
+    // if (menuItems.length == 0) return <p className="text-black">ERROR LOADING MENU</p>
 
 
     return (

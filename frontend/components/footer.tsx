@@ -5,12 +5,12 @@ export default function Footer()
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             <div className="flex justify-center space-x-10 p-10 bg-[#ac0000]">
                 <div className="grid-row-4 space-y-5">
-                    <h1>Address</h1>
+                    <h1 className="text-2xl">Address</h1>
                     <p>Dine In, Take-out, and Delivery</p>
                     <p>Unit 4 — 123 Example Street<br></br>Exampleville, ON A1A 1A1<br></br>Canada</p>
                 </div>
                 <div className="space-y-5">
-                    <h1>Opening Hours</h1>
+                    <h1 className="text-2xl">Opening Hours</h1>
                     <div>
                         <p>Monday: 11:30 a.m. - 9:00 p.m.</p>
                         <p>Tuesday: 11:30 a.m. - 9:00 p.m.</p>
@@ -22,7 +22,7 @@ export default function Footer()
                     </div>
                 </div>
                 <div className="space-y-5">
-                    <h1>Contact Us</h1>
+                    <h1 className="text-2xl">Contact Us</h1>
                     <p>[Phone Number Goes Here]</p>
                     <a href="#" className="fa fa-twitter social-button"></a>
                     <a href="#" className="fa fa-instagram social-button"></a>

@@ -1,6 +1,13 @@
-export let menuItems: object[] = [];
+export default async function getMenuItems(): Promise<object[]>{
+    try{
+        const res = await fetch('localhost:5223/api/menuItems');
+        if(!res.ok) throw new Error(`${res.status}`);
 
-export function updateMenuItems(updatedMenuItems:object[])
-{
-    menuItems = updatedMenuItems;
+        const menuItems = await res.json();
+        return menuItems;
+    } catch(err)
+    {
+        console.log(err)
+    }
+    return [];
 }

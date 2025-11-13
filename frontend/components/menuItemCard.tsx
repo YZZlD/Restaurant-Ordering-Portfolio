@@ -8,8 +8,8 @@ export default function MenuItemCard({menuItem} : {menuItem:any})
             {/* THIS IS THE IMAGE DIV */}
             <div className="relative w-full h-1/2 border-4 border-white rounded-md">
                 <div className="relative w-full h-full">
-                <img alt={menuItem.name} src={menuItem.src} className="object-cover h-full w-full"/>
-            </div>
+                    <img alt={menuItem.name} src={menuItem.src} className="object-cover h-full w-full"/>
+                </div>
             </div>
             {/* THIS IS THE DESCRIPTION DIV */}
             <div className="flex h-1/2 items-center mx-5">
