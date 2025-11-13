@@ -24,10 +24,7 @@ export default function MenuItemCard({menuItem} : {menuItem:any})
                         <strong>{menuItem.price}</strong>
                     </p>
                 </div>
-
-
             </div>
-
         </div>
     )
 

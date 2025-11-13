@@ -1,7 +1,7 @@
 'use client'
 
 import MenuItemCard from "@/components/menuItemCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import getMenuItems from "../src/APIHandling";
 
 export default function Page()
