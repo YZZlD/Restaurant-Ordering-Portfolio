@@ -19,9 +19,11 @@ namespace RestaurantOrderingSystem.Services
 
             return menuItems.Select(c => new MenuItemDTO
             {
+                MenuItemId = c.MenuItemId,
                 MenuItemName = c.MenuItemName,
                 MenuItemDescription = c.MenuItemDescription,
-                MenuItemPrice = c.MenuItemPrice
+                MenuItemPrice = c.MenuItemPrice,
+                ImageSource = c.ImageSource
             });
         }
 
@@ -31,9 +33,11 @@ namespace RestaurantOrderingSystem.Services
 
             return new MenuItemDTO
             {
+                MenuItemId = menuItem.MenuItemId,
                 MenuItemName = menuItem.MenuItemName,
                 MenuItemDescription = menuItem.MenuItemDescription,
-                MenuItemPrice = menuItem.MenuItemPrice
+                MenuItemPrice = menuItem.MenuItemPrice,
+                ImageSource = menuItem.ImageSource
             };
         }
 
@@ -43,7 +47,8 @@ namespace RestaurantOrderingSystem.Services
             {
                 MenuItemName = menuItemDTO.MenuItemName,
                 MenuItemDescription = menuItemDTO.MenuItemDescription,
-                MenuItemPrice = menuItemDTO.MenuItemPrice
+                MenuItemPrice = menuItemDTO.MenuItemPrice,
+                ImageSource = menuItemDTO.ImageSource
             };
 
             await _MenuItemRepository.AddMenuItemAsync(menuItem);
@@ -58,6 +63,7 @@ namespace RestaurantOrderingSystem.Services
             menuItem.MenuItemName = menuItemDTO.MenuItemName;
             menuItem.MenuItemDescription = menuItemDTO.MenuItemDescription;
             menuItem.MenuItemPrice = menuItemDTO.MenuItemPrice;
+            menuItem.ImageSource = menuItemDTO.ImageSource;
 
             await _MenuItemRepository.UpdateMenuItemAsync(menuItem);
         }

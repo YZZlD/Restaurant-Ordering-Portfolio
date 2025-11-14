@@ -11,6 +11,6 @@ namespace RestaurantOrderingSystem.DTOs
         public DateTime CreatedTime { get; set; }
         public DateTime? CompletedTime { get; set; }
 
-        public IEnumerable<MenuItem> MenuItems { get; set; }
+        public IEnumerable<MenuItemDTO> MenuItems { get; set; }
     }
 }

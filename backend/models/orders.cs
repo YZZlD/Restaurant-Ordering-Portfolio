@@ -1,7 +1,3 @@
-using System;
-
-#nullable disable
-
 namespace RestaurantOrderingSystem.Models
 {
     public partial class Order
@@ -11,7 +7,6 @@ namespace RestaurantOrderingSystem.Models
         public DateTime CreatedTime { get; set; }
         public DateTime? CompletedTime { get; set; }
 
-        public int OrderLineItemId { get; set; }
-        public OrderLineItem OrderLineItem { get; set; }
+        public ICollection<OrderLineItem> OrderLineItems { get; set; } = new List<OrderLineItem>();
     }
 }

@@ -23,13 +23,19 @@ namespace RestaurantOrderingSystem.Services
         {
             var orders = await _orderRepository.GetAllOrdersAsync();
 
-            return (IEnumerable<OrderInfoDTO>)orders.Select(async c => new OrderInfoDTO
+            return orders.Select(c => new OrderInfoDTO
             {
                 OrderInfoId = c.OrderId,
                 OrderStatus = c.OrderStatus,
                 CreatedTime = c.CreatedTime,
                 CompletedTime = c.CompletedTime,
-                MenuItems = await _menuItemRepository.GetAllMenuItemsByOrderId(c.OrderId)
+                MenuItems = _menuItemRepository.GetAllMenuItemsByOrderId(c.OrderId).Select(m => new MenuItemDTO
+                {
+                    MenuItemId = m.MenuItemId,
+                    MenuItemName = m.MenuItemName,
+                    MenuItemDescription = m.MenuItemDescription,
+                    MenuItemPrice = m.MenuItemPrice
+                })
             });
         }
 
@@ -43,29 +49,37 @@ namespace RestaurantOrderingSystem.Services
                 OrderStatus = order.OrderStatus,
                 CreatedTime = order.CreatedTime,
                 CompletedTime = order.CompletedTime,
-                MenuItems = await _menuItemRepository.GetAllMenuItemsByOrderId(order.OrderId)
+                MenuItems = _menuItemRepository.GetAllMenuItemsByOrderId(order.OrderId).Select(m => new MenuItemDTO
+                {
+                    MenuItemId = m.MenuItemId,
+                    MenuItemName = m.MenuItemName,
+                    MenuItemDescription = m.MenuItemDescription,
+                    MenuItemPrice = m.MenuItemPrice
+                })
             };
         }
 
         public async Task AddOrderAsync(OrderInfoDTO orderInfoDTO)
         {
+            DateTime dt = DateTime.UtcNow;
+
             var order = new Order
             {
-                OrderStatus = orderInfoDTO.OrderStatus,
-                CreatedTime = orderInfoDTO.CreatedTime,
-                CompletedTime = orderInfoDTO.CompletedTime
+                OrderStatus = false,
+                CreatedTime = dt,
+                CompletedTime = null
             };
 
             await _orderRepository.AddOrderAsync(order);
 
-            foreach(MenuItem menuItem in orderInfoDTO.MenuItems)
+            foreach(MenuItemDTO menuItem in orderInfoDTO.MenuItems)
             {
                 var orderLineItem = new OrderLineItem
                 {
                     OrderId = order.OrderId,
                     Order = order,
                     MenuItemId = menuItem.MenuItemId,
-                    MenuItem = menuItem
+                    MenuItem = await _menuItemRepository.GetMenuItemByIdAsync(menuItem.MenuItemId)
                 };
 
                 await _orderLineItemRepository.AddOrderLineItemAsync(orderLineItem);

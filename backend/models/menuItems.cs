@@ -1,7 +1,3 @@
-using System;
-
-#nullable disable
-
 namespace RestaurantOrderingSystem.Models
 {
     public partial class MenuItem
@@ -10,8 +6,8 @@ namespace RestaurantOrderingSystem.Models
         public string MenuItemName { get; set; }
         public string MenuItemDescription { get; set; }
         public double MenuItemPrice { get; set; }
+        public string ImageSource { get; set; }
 
-        public int OrderLineItemId { get; set; }
-        public OrderLineItem OrderLineItems { get; set; }
+        public ICollection<OrderLineItem> OrderLineItems { get; set; } = new List<OrderLineItem>();
     }
 }

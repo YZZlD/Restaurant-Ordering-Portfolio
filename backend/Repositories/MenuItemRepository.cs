@@ -22,10 +22,10 @@ namespace RestaurantOrderingSystem.Repositories
             return await _context.MenuItems.FindAsync(id);
         }
 
-        public async Task<IEnumerable<MenuItem>> GetAllMenuItemsByOrderId(int id)
+        public IEnumerable<MenuItem> GetAllMenuItemsByOrderId(int id)
         {
             var query = from order in _context.Set<Order>()
-                        join orderLineItem in _context.Set<OrderLineItem>() on order.OrderLineItemId equals orderLineItem.OrderLineItemId
+                        join orderLineItem in _context.Set<OrderLineItem>() on order.OrderId equals orderLineItem.OrderId
                         join menuItem in _context.Set<MenuItem>() on orderLineItem.MenuItemId equals menuItem.MenuItemId
                         where order.OrderId == id
                         select menuItem;

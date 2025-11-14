@@ -23,6 +23,8 @@ namespace RestaurantOrderingSystem
             services.AddMvc();
             services.AddDbContext<RestaurantDbContext>(options => options.UseNpgsql(connectionString));
 
+            services.AddScoped<IOrderLineItemRepository, OrderLineItemRepository>();
+
             services.AddScoped<IMenuItemRepository, MenuItemRepository>();
             services.AddScoped<IMenuItemService, MenuItemService>();
 
@@ -33,6 +35,8 @@ namespace RestaurantOrderingSystem
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehaviour", true);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
