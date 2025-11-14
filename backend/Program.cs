@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
 using RestaurantOrderingSystem;
-using RestaurantOrderingSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

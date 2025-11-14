@@ -15,7 +15,7 @@ namespace RestaurantOrderingSystem.Services
 
         public async Task<IEnumerable<CustomerDTO>> GetAllCustomersAsync()
         {
-            var customers = await _customerRepository.GetAllCustomersAsync();
+            IEnumerable<Customer> customers = await _customerRepository.GetAllCustomersAsync();
 
             return customers.Select(c => new CustomerDTO
             {
@@ -27,7 +27,7 @@ namespace RestaurantOrderingSystem.Services
 
         public async Task<CustomerDTO> GetCustomerByIdAsync(int id)
         {
-            var customer = await _customerRepository.GetCustomerByIdAsync(id);
+            Customer customer = await _customerRepository.GetCustomerByIdAsync(id);
 
             return new CustomerDTO
             {

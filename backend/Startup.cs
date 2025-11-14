@@ -1,6 +1,7 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using RestaurantOrderingSystem.Models;
+using RestaurantOrderingSystem.Repositories;
+using RestaurantOrderingSystem.Services;
 
 namespace RestaurantOrderingSystem
 {
@@ -18,16 +19,19 @@ namespace RestaurantOrderingSystem
             //Grabbing connection string from local secret keys
             string connectionString = _configuration["ConnectionStrings:DefaultConnection"];
 
+
+            services.AddMvc();
             services.AddDbContext<RestaurantDbContext>(options => options.UseNpgsql(connectionString));
 
-            // services.AddDbContext<OrdersContext>(options =>
-            //     options.UseNpgsql(connectionString));
+            services.AddScoped<ICustomerRepository, CustomersRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
-            // services.AddDbContext<MenuItemsContext>(options =>
-            //     options.UseNpgsql(connectionString));
+            services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+            services.AddScoped<IMenuItemService, MenuItemService>();
 
-            // services.AddDbContext<CustomersContext>(options =>
-            //     options.UseNpgsql(connectionString));
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderService, OrderService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -18,7 +18,7 @@ namespace RestaurantOrderingSystem.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var customers = _customerService.GetAllCustomersAsync();
+            var customers = await _customerService.GetAllCustomersAsync();
 
             return Ok(customers);
         }
@@ -26,7 +26,7 @@ namespace RestaurantOrderingSystem.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var customer = _customerService.GetCustomerByIdAsync(id);
+            var customer = await _customerService.GetCustomerByIdAsync(id);
 
             return Ok(customer);
         }

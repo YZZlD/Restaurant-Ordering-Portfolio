@@ -9,7 +9,7 @@ namespace RestaurantOrderingSystem.Models
 
         }
 
-        public DbSet<Customer> Customers { get; set; } = null!;
+        public DbSet<OrderLineItem> OrderLineItems { get; set; } = null!;
         public DbSet<MenuItem> MenuItems { get; set; } = null!;
         public DbSet<Order> Orders { get; set; } = null!;
     }
