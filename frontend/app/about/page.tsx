@@ -10,8 +10,8 @@ export default function Page()
             <div className="m-10 p-10 bg-red-500 rounded-md">
                 <h1 className={`${lobster.className} dropshadow header text-center`}>Who We Are</h1>
                 <p className={`${lobster.className} dropshadow header text-red-300 text-center`}>
-                    Founded in 1910 by two men with a passion for cooking and a love for bringing smiles to patrons we believe
-                    in building community and producing the best possible product.
+                    Founded in 1910 by two men with a passion for cooking and a love for bringing smiles to patrons. We strive to uphold that legacy
+                    by building community and producing the best possible product.
                 </p>
             </div>
         </div>

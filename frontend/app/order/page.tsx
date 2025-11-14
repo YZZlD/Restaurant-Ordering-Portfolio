@@ -8,9 +8,6 @@ import OrderCart from "@/components/orderCart";
 export default function Page()
 {
     const orderItemArray: boolean[] = [];
-
-    
-
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState<any[]>([]);
     const [total, setTotal] = useState(0);
@@ -39,11 +36,11 @@ export default function Page()
     const removeMenuItemFromCart = (id:number) => {
         const item = cart.filter((item:any) => item.itemInfo.id === id)[0];
         setTotal(total => total -= item.itemInfo.price * item.quantity);
-        setCart(cart.filter((item:any) => item.itemInfo.id !== id)); 
+        setCart(cart.filter((item:any) => item.itemInfo.id !== id));
     }
 
     const removeLastItem = (id:number) => {
-        setCart(cart.filter((item:any) => item.itemInfo.id !== id)); 
+        setCart(cart.filter((item:any) => item.itemInfo.id !== id));
     }
 
     const newMenuItems = [
@@ -72,6 +69,6 @@ export default function Page()
             </div>
             <OrderCart setItemInCart={(id:number) => setItemInCart(id)} removeLastItem={(id:number) => removeLastItem(id)} total={total} modifyTotal={(value:number) => modifyTotal(value)} cart={cart}/>
         </div>
-        
+
     )
 }
