@@ -10,5 +10,8 @@ namespace RestaurantOrderingSystem.Models
         public bool OrderStatus { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime? CompletedTime { get; set; }
+
+        public int OrderLineItemId { get; set; }
+        public OrderLineItem OrderLineItem { get; set; }
     }
 }

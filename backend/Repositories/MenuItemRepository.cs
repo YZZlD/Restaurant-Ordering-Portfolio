@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantOrderingSystem.Models;
 
-//TODO: THIS IS A GENERIC IMPLEMENTATION ARCHITECTURE WILL BE CHANGED LATER
-
 namespace RestaurantOrderingSystem.Repositories
 {
     public class MenuItemRepository : IMenuItemRepository
@@ -22,6 +20,20 @@ namespace RestaurantOrderingSystem.Repositories
         public async Task<MenuItem> GetMenuItemByIdAsync(int id)
         {
             return await _context.MenuItems.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItemsByOrderId(int id)
+        {
+            var query = from order in _context.Set<Order>()
+                        join orderLineItem in _context.Set<OrderLineItem>() on order.OrderLineItemId equals orderLineItem.OrderLineItemId
+                        join menuItem in _context.Set<MenuItem>() on orderLineItem.MenuItemId equals menuItem.MenuItemId
+                        where order.OrderId == id
+                        select menuItem;
+
+            List<MenuItem> menuItems = query.ToList<MenuItem>();
+
+            return menuItems;
+
         }
 
         public async Task AddMenuItemAsync(MenuItem menuItem)

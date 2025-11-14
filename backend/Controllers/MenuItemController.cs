@@ -36,7 +36,7 @@ namespace RestaurantOrderingSystem.Controllers
         {
             await _menuItemService.AddMenuItemAsync(menuItemDTO);
 
-            return CreatedAtAction(nameof(GetById), new { id = menuItemDTO.Id });
+            return CreatedAtAction(nameof(GetById), new { id = menuItemDTO.MenuItemId });
         }
 
         [HttpPut("{id}")]

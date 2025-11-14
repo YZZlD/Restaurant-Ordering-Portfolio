@@ -1,6 +1,7 @@
 using RestaurantOrderingSystem.Services;
 using RestaurantOrderingSystem.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace RestaurantOrderingSystem.Controllers
 {
@@ -32,17 +33,17 @@ namespace RestaurantOrderingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(OrganizationOrderDTO organizationOrderDTO)
+        public async Task<IActionResult> Add(OrderInfoDTO orderInfoDTO)
         {
-            await _orderService.AddOrderAsync(organizationOrderDTO);
+            await _orderService.AddOrderAsync(orderInfoDTO);
 
-            return CreatedAtAction(nameof(GetById), new { id = organizationOrderDTO.Id });
+            return CreatedAtAction(nameof(GetById), new { id = orderInfoDTO.OrderInfoId });
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, OrganizationOrderDTO organizationOrderDTO)
+        public async Task<IActionResult> Update(int id, OrderInfoDTO orderInfoDTO)
         {
-            await _orderService.UpdateOrderAsync(id, organizationOrderDTO);
+            await _orderService.UpdateOrderAsync(id, orderInfoDTO);
 
             return NoContent();
         }

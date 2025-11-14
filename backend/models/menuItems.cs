@@ -10,5 +10,8 @@ namespace RestaurantOrderingSystem.Models
         public string MenuItemName { get; set; }
         public string MenuItemDescription { get; set; }
         public double MenuItemPrice { get; set; }
+
+        public int OrderLineItemId { get; set; }
+        public OrderLineItem OrderLineItems { get; set; }
     }
 }

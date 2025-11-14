@@ -23,9 +23,6 @@ namespace RestaurantOrderingSystem
             services.AddMvc();
             services.AddDbContext<RestaurantDbContext>(options => options.UseNpgsql(connectionString));
 
-            services.AddScoped<ICustomerRepository, CustomersRepository>();
-            services.AddScoped<ICustomerService, CustomerService>();
-
             services.AddScoped<IMenuItemRepository, MenuItemRepository>();
             services.AddScoped<IMenuItemService, MenuItemService>();
 

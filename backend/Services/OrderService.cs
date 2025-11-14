@@ -9,61 +9,80 @@ namespace RestaurantOrderingSystem.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IMenuItemRepository _menuItemRepository;
+        private readonly IOrderLineItemRepository _orderLineItemRepository;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository, IMenuItemRepository menuItemRepository, IOrderLineItemRepository orderLineItemRepository)
         {
             _orderRepository = orderRepository;
+            _menuItemRepository = menuItemRepository;
+            _orderLineItemRepository = orderLineItemRepository;
         }
 
-        public async Task<IEnumerable<OrganizationOrderDTO>> GetAllOrdersAsync()
+        public async Task<IEnumerable<OrderInfoDTO>> GetAllOrdersAsync()
         {
-            var Orders = await _orderRepository.GetAllOrdersAsync();
+            var orders = await _orderRepository.GetAllOrdersAsync();
 
-            return Orders.Select(c => new OrganizationOrderDTO
+            return (IEnumerable<OrderInfoDTO>)orders.Select(async c => new OrderInfoDTO
             {
+                OrderInfoId = c.OrderId,
                 OrderStatus = c.OrderStatus,
                 CreatedTime = c.CreatedTime,
                 CompletedTime = c.CompletedTime,
-                MenuItem = c.MenuItem
+                MenuItems = await _menuItemRepository.GetAllMenuItemsByOrderId(c.OrderId)
             });
         }
 
-        public async Task<OrganizationOrderDTO> GetOrderByIdAsync(int id)
+        public async Task<OrderInfoDTO> GetOrderByIdAsync(int id)
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
 
-            return new OrganizationOrderDTO
+            return new OrderInfoDTO
             {
+                OrderInfoId = order.OrderId,
                 OrderStatus = order.OrderStatus,
                 CreatedTime = order.CreatedTime,
                 CompletedTime = order.CompletedTime,
-                MenuItem = order.MenuItem
+                MenuItems = await _menuItemRepository.GetAllMenuItemsByOrderId(order.OrderId)
             };
         }
 
-        public async Task AddOrderAsync(OrganizationOrderDTO organizationOrderDTO)
+        public async Task AddOrderAsync(OrderInfoDTO orderInfoDTO)
         {
             var order = new Order
             {
-                OrderStatus = organizationOrderDTO.OrderStatus,
-                CreatedTime = organizationOrderDTO.CreatedTime,
-                CompletedTime = organizationOrderDTO.CompletedTime,
-                MenuItem = organizationOrderDTO.MenuItem
+                OrderStatus = orderInfoDTO.OrderStatus,
+                CreatedTime = orderInfoDTO.CreatedTime,
+                CompletedTime = orderInfoDTO.CompletedTime
             };
 
             await _orderRepository.AddOrderAsync(order);
+
+            foreach(MenuItem menuItem in orderInfoDTO.MenuItems)
+            {
+                var orderLineItem = new OrderLineItem
+                {
+                    OrderId = order.OrderId,
+                    Order = order,
+                    MenuItemId = menuItem.MenuItemId,
+                    MenuItem = menuItem
+                };
+
+                await _orderLineItemRepository.AddOrderLineItemAsync(orderLineItem);
+            }
+
+
         }
 
-        public async Task UpdateOrderAsync(int id, OrganizationOrderDTO organizationOrderDTO)
+        public async Task UpdateOrderAsync(int id, OrderInfoDTO orderInfoDTO)
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
 
             if (order == null) throw new KeyNotFoundException("Order id not found.");
 
-            order.OrderStatus = organizationOrderDTO.OrderStatus;
-            order.CreatedTime = organizationOrderDTO.CreatedTime;
-            order.CompletedTime = organizationOrderDTO.CompletedTime;
-            order.MenuItem = organizationOrderDTO.MenuItem;
+            order.OrderStatus = orderInfoDTO.OrderStatus;
+            order.CreatedTime = orderInfoDTO.CreatedTime;
+            order.CompletedTime = orderInfoDTO.CompletedTime;
 
             await _orderRepository.UpdateOrderAsync(order);
         }
