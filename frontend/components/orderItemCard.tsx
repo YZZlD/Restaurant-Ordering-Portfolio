@@ -24,9 +24,8 @@ export default function OrderItemCard({onAdd, onRemove, menuItem, inCart, setIte
                 </p>
             </div>
             <div className="flex items-center justify-center col-start-8 col-span-3">
-                {inCart ? <button onClick={() => {onRemove(); setItemInCart()}} className="bg-white hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Remove From Order</button> : 
+                {inCart ? <button onClick={() => {onRemove(); setItemInCart()}} className="bg-white hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Remove From Order</button> :
                 <button onClick={() => {onAdd(); setItemInCart()}} className="bg-white hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Add To Order</button>}
-                
             </div>
         </div>
     )
