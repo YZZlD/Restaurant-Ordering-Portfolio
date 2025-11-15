@@ -1,7 +1,6 @@
 export async function getMenuItems(): Promise<any[]>{
     try{
-        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'localhost:5223'}/api/menuItem`);
-        console.log(process.env.API_URL);
+        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'http://localhost:5223'}/api/menuItem`);
         if(!res.ok) throw new Error(`${res.status}`);
 
         const menuItems = await res.json();
@@ -15,7 +14,7 @@ export async function getMenuItems(): Promise<any[]>{
 
 export async function getOrders(): Promise<any[]> {
     try{
-        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'localhost:5223'}/api/order`);
+        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'http://localhost:5223'}/api/order`);
         if(!res.ok) throw new Error(`${res.status}`);
 
         const orders = await res.json();
@@ -29,7 +28,7 @@ export async function getOrders(): Promise<any[]> {
 
 export async function postOrder(cart: any[]) : Promise<any>{
     try{
-        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'localhost:5223'}/api/order`, {
+        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'http://localhost:5223'}/api/order`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

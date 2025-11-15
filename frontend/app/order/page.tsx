@@ -43,6 +43,7 @@ export default function Page()
             getMenuItems().then((result) => {
             setLoading(false);
             setMenuItems(result);
+            console.log(process.env.API_URL + "THIS IS API URL I GUESS");
         })
     }, [])
 
