@@ -7,6 +7,15 @@ import OrderCart from "@/components/orderCart";
 
 export default function Page()
 {
+    //loading and menu items same as in menu route
+
+    //We put the cart in state to allow for tracking between multiple components and dynamic updating.
+
+    //inCart tracks if a item is currently in the cart to keep state aligned between the orderItemCards remove button
+    //and the orderCartItem removing itself when quantity is reduced below 1
+
+    //We tracked total cost so we can modify it upon adding a orderItemCard to cart or modifying the quantity of
+    //an item within the cart
     const orderItemArray: boolean[] = [];
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState<any[]>([]);
@@ -14,6 +23,8 @@ export default function Page()
     const [inCart, setInCart] = useState(orderItemArray);
     const [menuItems, setMenuItems] = useState<any[]>([]);
 
+
+    //Passing state setters through functions instead of directly
 
     const setItemInCart = (index:number) => {
         const updatedInCart = [...inCart]

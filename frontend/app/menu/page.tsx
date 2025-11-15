@@ -6,6 +6,8 @@ import {getMenuItems} from "../src/APIHandling";
 
 export default function Page()
 {
+    //We declare state for loading to allow for a conditional loading display while waiting on fetch.
+    //We put menuItems in state so we can dynamically update the menu display once we grab data.
     const [loading, setLoading] = useState(true);
     const [menuItems, setMenuItems] = useState<any>([]);
 

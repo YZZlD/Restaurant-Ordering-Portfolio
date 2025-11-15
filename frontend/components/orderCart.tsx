@@ -1,6 +1,4 @@
-import { useState } from "react";
 import CartItemCard from "./cartItemCard";
-import MenuItemCard from "./menuItemCard";
 import { postOrder } from "@/app/src/APIHandling";
 import { redirect } from 'next/navigation'
 

@@ -1,6 +1,10 @@
+//Declare all API handling functions in one place for easy access and reusability.
+
+//I would like to have the api url within an environment variable in production but I could
+//not get it to work with render and nextjs env so its hard coded.
+
 export async function getMenuItems(): Promise<any[]>{
     try{
-        // const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'http://localhost:5223'}/api/menuItem`);
         const res = await fetch("https://restaurant-api-latest.onrender.com/api/menuItem");
         if(!res.ok) throw new Error(`${res.status}`);
 

@@ -12,6 +12,8 @@ namespace RestaurantOrderingSystem.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //Manually setting up the relationships because of trouble with EF Core mixing up keys etc.
+
             builder.Entity<OrderLineItem>().HasKey(oli => oli.OrderLineItemId);
 
             builder.Entity<OrderLineItem>().HasOne(oli => oli.Order).WithMany(order => order.OrderLineItems).HasForeignKey(oli => oli.OrderId);

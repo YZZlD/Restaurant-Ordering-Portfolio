@@ -3,6 +3,9 @@ using RestaurantOrderingSystem.Models;
 
 namespace RestaurantOrderingSystem.Repositories
 {
+    /// <summary>
+    /// OrderLineItems only supports adding as you should never directly modify the items within a given order
+    /// </summary>
     public class OrderLineItemRepository : IOrderLineItemRepository
     {
         private readonly RestaurantDbContext _context;

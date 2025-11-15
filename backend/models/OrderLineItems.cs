@@ -1,5 +1,10 @@
 namespace RestaurantOrderingSystem.Models
 {
+
+    /// <summary>
+    /// OrderLineItem serves as a way to cleanly organize items within the database
+    /// by linking Orders with MenuItems
+    /// </summary>
     public partial class OrderLineItem
     {
         public int OrderLineItemId { get; set; }

@@ -22,6 +22,7 @@ namespace RestaurantOrderingSystem.Repositories
             return await _context.MenuItems.FindAsync(id);
         }
 
+        //We grab menuItems through a double SQL join with linq to directly get all menuitems linked to an order id.
         public IEnumerable<MenuItem> GetAllMenuItemsByOrderId(int id)
         {
             var query = from order in _context.Set<Order>()

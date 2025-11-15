@@ -2,8 +2,6 @@ using RestaurantOrderingSystem.DTOs;
 using RestaurantOrderingSystem.Models;
 using RestaurantOrderingSystem.Repositories;
 
-//TODO: THIS IS GENERIC
-
 namespace RestaurantOrderingSystem.Services
 {
     public class OrderService : IOrderService
@@ -29,6 +27,9 @@ namespace RestaurantOrderingSystem.Services
                 OrderStatus = c.OrderStatus,
                 CreatedTime = c.CreatedTime,
                 CompletedTime = c.CompletedTime,
+
+                //We call the MenuItem repository to link MenuItems necessary to the orderID. See RestaurantOrderingSystem.Repositories.MenuItemRepository.GetAllMenuItemsByOrderId
+                //for implementation.
                 MenuItems = _menuItemRepository.GetAllMenuItemsByOrderId(c.OrderId).Select(m => new MenuItemDTO
                 {
                     MenuItemId = m.MenuItemId,
@@ -59,6 +60,7 @@ namespace RestaurantOrderingSystem.Services
             };
         }
 
+        //We know the frontend will not provide status created time etc as we can set these upon order creation.
         public async Task AddOrderAsync(OrderInfoDTO orderInfoDTO)
         {
             DateTime dt = DateTime.UtcNow;
@@ -72,6 +74,7 @@ namespace RestaurantOrderingSystem.Services
 
             await _orderRepository.AddOrderAsync(order);
 
+            //We create all of the necessary orderLineItems based on the array of menuItems provided within the body of the request
             foreach(MenuItemDTO menuItem in orderInfoDTO.MenuItems)
             {
                 var orderLineItem = new OrderLineItem

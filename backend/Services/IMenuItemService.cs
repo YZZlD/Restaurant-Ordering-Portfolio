@@ -1,7 +1,5 @@
 using RestaurantOrderingSystem.DTOs;
 
-//TODO: THIS IS GENERIC IMPLEMENTATION
-
 namespace RestaurantOrderingSystem.Services
 {
     public interface IMenuItemService

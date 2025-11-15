@@ -16,7 +16,7 @@ namespace RestaurantOrderingSystem
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Grabbing connection string from local secret keys
+            //We grab the connection string from env variable for production deployment or user_secrets for local development.
 
             string connectionString = !String.IsNullOrEmpty(Environment.GetEnvironmentVariable("DefaultConnection")) ? Environment.GetEnvironmentVariable("DefaultConnection") : _configuration["ConnectionStrings:DefaultConnection"];
 
@@ -45,6 +45,7 @@ namespace RestaurantOrderingSystem
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //This was to fix default DateTime behaviour throwing errors within order creation.
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehaviour", true);
 
             if (env.IsDevelopment())
@@ -57,7 +58,6 @@ namespace RestaurantOrderingSystem
                 app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();

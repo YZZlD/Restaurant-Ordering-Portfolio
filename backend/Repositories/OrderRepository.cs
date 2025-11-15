@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantOrderingSystem.Models;
 
-//TODO: THIS IS A GENERIC IMPLEMENTATION OF ACCESSING THE ORDER TABLE FROM THE DATABASE THIS WILL CHANGE LATER FOR MORE SPECIFIC QUERIES
-
 namespace RestaurantOrderingSystem.Repositories
 {
     public class OrderRepository : IOrderRepository
