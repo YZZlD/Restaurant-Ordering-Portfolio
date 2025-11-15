@@ -36,7 +36,7 @@ namespace RestaurantOrderingSystem
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins("http://localhost:3000", "https://restaurant-ordering-portfolio.onrender.com")
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                 });
@@ -57,7 +57,7 @@ namespace RestaurantOrderingSystem
                 app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
