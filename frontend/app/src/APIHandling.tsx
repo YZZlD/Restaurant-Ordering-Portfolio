@@ -15,7 +15,7 @@ export async function getMenuItems(): Promise<any[]>{
 
 export async function getOrders(): Promise<any[]> {
     try{
-        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'http://localhost:5223'}/api/order`);
+        const res = await fetch("https://restaurant-api-latest.onrender.com/api/order");
         if(!res.ok) throw new Error(`${res.status}`);
 
         const orders = await res.json();
@@ -29,7 +29,7 @@ export async function getOrders(): Promise<any[]> {
 
 export async function postOrder(cart: any[]) : Promise<any>{
     try{
-        const res = await fetch(`${process.env.API_URL ? process.env.API_URL : 'http://localhost:5223'}/api/order`, {
+        const res = await fetch("https://restaurant-api-latest.onrender.com/api/order", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
