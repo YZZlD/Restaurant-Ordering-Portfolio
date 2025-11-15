@@ -12,6 +12,20 @@ export async function getMenuItems(): Promise<any[]>{
     return [];
 }
 
+export async function getOrders(): Promise<any[]> {
+    try{
+        const res = await fetch('http://localhost:5223/api/order');
+        if(!res.ok) throw new Error(`${res.status}`);
+
+        const orders = await res.json();
+        return orders;
+    }catch(err)
+    {
+        console.log(err);
+    }
+    return [];
+}
+
 export async function postOrder(cart: any[]) : Promise<any>{
     try{
         const res = await fetch('http://localhost:5223/api/order', {
