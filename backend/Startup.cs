@@ -17,7 +17,8 @@ namespace RestaurantOrderingSystem
         public void ConfigureServices(IServiceCollection services)
         {
             //Grabbing connection string from local secret keys
-            string connectionString = _configuration["ConnectionStrings:DefaultConnection"];
+
+            string connectionString = !String.IsNullOrEmpty(Environment.GetEnvironmentVariable("DefaultConnection")) ? Environment.GetEnvironmentVariable("DefaultConnection") : _configuration["ConnectionStrings:DefaultConnection"];
 
 
             services.AddMvc();
@@ -31,6 +32,15 @@ namespace RestaurantOrderingSystem
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderService, OrderService>();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,10 +57,12 @@ namespace RestaurantOrderingSystem
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
+
+            app.UseCors();
         }
     }
 }

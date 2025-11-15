@@ -2,6 +2,8 @@ using RestaurantOrderingSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 

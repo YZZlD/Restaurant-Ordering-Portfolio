@@ -5,4 +5,10 @@ const nextConfig: NextConfig = {
   devIndicators: false
 };
 
+module.exports = {
+  env: {
+
+  }
+}
+
 export default nextConfig;
