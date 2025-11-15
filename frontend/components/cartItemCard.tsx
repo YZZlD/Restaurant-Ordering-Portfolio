@@ -8,11 +8,11 @@ export default function CartItemCard({cartItem, modifyTotal, removeLastItem, set
     const [quantity, setQuantity] = useState(1);
 
     const decrementQuantity = () => {
-        modifyTotal(cartItem.itemInfo.price * -1);
+        modifyTotal(cartItem.itemInfo.menuItemPrice * -1);
 
         if(cartItem.quantity <= 1) {
-            removeLastItem(cartItem.itemInfo.id);
-            setItemInCart(cartItem.itemInfo.id);
+            removeLastItem(cartItem.itemInfo.menuItemId);
+            setItemInCart(cartItem.itemInfo.menuItemId);
             return;
         }
 
@@ -23,17 +23,17 @@ export default function CartItemCard({cartItem, modifyTotal, removeLastItem, set
     const incrementQuantity = () => {
         cartItem.quantity++;
 
-        modifyTotal(cartItem.itemInfo.price);
+        modifyTotal(cartItem.itemInfo.menuItemPrice);
         setQuantity(quantity => quantity += 1);
     }
 
     return (
         <div className="grid grid-cols-10 border-2 border-black rounded-lg items-center h-20 bg-red-200">
             <div className="grid col-start-1 col-span-4 grid-cols-1 ms-10">
-                <h1 className="text-xl text-black">{cartItem.itemInfo.name}</h1>
+                <h1 className="text-xl text-black">{cartItem.itemInfo.menuItemName}</h1>
             </div>
             <div className="flex justify-center col-start-5 col-span-2">
-                <p className="text-2xl text-black"><strong>${cartItem.itemInfo.price}</strong></p>
+                <p className="text-2xl text-black"><strong>${cartItem.itemInfo.menuItemPrice}</strong></p>
             </div>
             <div className="flex justify-center col-start-7 col-span-4">
                 <div className="relative grid grid-cols-10 h-1/3 w-1/2">

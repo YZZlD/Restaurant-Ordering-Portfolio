@@ -6,21 +6,21 @@ import { useState } from "react"
 export default function OrderItemCard({onAdd, onRemove, menuItem, inCart, setItemInCart} : {menuItem:any, onAdd:Function, onRemove:Function, inCart:boolean, setItemInCart:Function})
 {
     return (
-        <div className="relative grid grid-cols-10 w-full h-50 rounded-md border-4 border-black bg-red-200">
-            <div className="relative col-start-1 col-span-3 w-full h-full rounded-md border-4 border-red-900">
+        <div className="relative grid grid-cols-10 w-full h-50 rounded-md border-4 border-black bg-red-200 px-5">
+            <div className="relative col-start-1 col-span-3 w-full h-40 rounded-md border-4 border-red-900 m-auto">
                 <div className="relative w-full h-full border-4 border-black">
-                    <img alt={menuItem.name} src={menuItem.src} className="object-cover h-full w-full"/>
+                    <img alt={menuItem.menuItemName} src={menuItem.imageSource} className="object-cover h-full w-full"/>
                 </div>
             </div>
             <div className="relative w-full h-full col-start-4 col-span-4">
                 <h1 className={`${libreBaskerville.className}  itemName p-2 text-black`}>
-                {menuItem.name}
+                {menuItem.menuItemName}
                 </h1>
                 <p className={`${libreBaskerville.className}  itemDescription p-2 text-black`}>
-                    {menuItem.description}
+                    {menuItem.menuItemDescription}
                 </p>
                 <p className={`${libreBaskerville.className}  itemPrice p-2 text-black`}>
-                    <strong>${menuItem.price}</strong>
+                    <strong>${menuItem.menuItemPrice}</strong>
                 </p>
             </div>
             <div className="flex items-center justify-center col-start-8 col-span-3">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CartItemCard from "./cartItemCard";
 import MenuItemCard from "./menuItemCard";
+import { postOrder } from "@/app/src/APIHandling";
 
 export default function OrderCart({cart, modifyTotal, total, removeLastItem, setItemInCart}: {cart:any[], modifyTotal:Function, total:number, removeLastItem:Function, setItemInCart:Function})
 {
@@ -9,15 +10,19 @@ export default function OrderCart({cart, modifyTotal, total, removeLastItem, set
                 <div className="sticky top-0 z-5 bg-black">
                     <h1 className="header">Your Cart</h1>
                 </div>
-                {cart.map(item => (
-                    <div key={item.itemInfo.id} className="px-2">
-                        <CartItemCard setItemInCart={(id:number) => setItemInCart(id)}removeLastItem={(id:number) => removeLastItem(id)} cartItem={item} modifyTotal={(value:number) => modifyTotal(value)} />
-                    </div>
-                ))}
-                <div className="absolute w-full bottom-0 h-30 z-5 bg-black">
-                    <h1>{Math.abs(total).toFixed(2)}</h1>
+                <div className="h-3/4 space-y-3 my-4">
+                    {cart.map(item => (
+                        <div key={item.itemInfo.menuItemId} className="px-2">
+                            <CartItemCard setItemInCart={(id:number) => setItemInCart(id)}removeLastItem={(id:number) => removeLastItem(id)} cartItem={item} modifyTotal={(value:number) => modifyTotal(value)} />
+                        </div>
+                    ))}
+                </div>
+                <div className="w-full bottom-0 h-30 z-5 bg-black flex space-x-10">
+                    <h1 className="header">Total: </h1>
+                    <h1 className="header">{Math.abs(total).toFixed(2)}</h1>
+                    <button onClick={async () => await postOrder(cart)}>Submit Order</button>
                 </div>
         </div>
-        
+
     )
 }
