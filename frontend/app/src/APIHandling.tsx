@@ -1,6 +1,6 @@
 export async function getMenuItems(): Promise<any[]>{
     try{
-        const res = await fetch(`${'http://localhost:5223'}/api/menuItem`);
+        const res = await fetch(`http://localhost:5223/api/menuItem`);
         if(!res.ok) throw new Error(`${res.status}`);
 
         const menuItems = await res.json();
