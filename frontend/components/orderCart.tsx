@@ -17,10 +17,10 @@ export default function OrderCart({cart, modifyTotal, total, removeLastItem, set
                         </div>
                     ))}
                 </div>
-                <div className="w-full bottom-0 h-30 z-5 bg-black flex space-x-10">
+                <div className="w-full bottom-0 h-30 z-5 bg-black flex space-x-10 p-10">
                     <h1 className="header">Total: </h1>
                     <h1 className="header">{Math.abs(total).toFixed(2)}</h1>
-                    <button onClick={async () => await postOrder(cart)}>Submit Order</button>
+                    <button onClick={async () => await postOrder(cart)} className=" bg-white hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Submit Order</button>
                 </div>
         </div>
 
