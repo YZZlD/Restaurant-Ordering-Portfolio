@@ -62,7 +62,7 @@ export default function Page()
         orderItemArray.push(false);
     }
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p className="text-xl text-black">Loading...</p>;
 
     return (
         <div className="relative grid grid-cols-10 gap-x-4">
